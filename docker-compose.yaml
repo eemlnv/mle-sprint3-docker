@@ -1,0 +1,22 @@
+services:
+  churn-app:  
+    
+    env_file:
+      - ./.env
+    # путь к файлу с переменными окружения
+    
+    build:
+      dockerfile: Dockerfile
+    # собираем образ
+    
+    ports:
+      - "${APP_VM_PORT}:${APP_DOCKER_PORT}"
+    # перенаправляем порты; укажите их числами.
+
+    volumes:
+      - type: bind
+        # директория на ВМ
+        source: ./speeches
+        # директория в контейнере
+        target: /app_with_counter/speeches
+      
